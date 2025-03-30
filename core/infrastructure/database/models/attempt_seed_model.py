@@ -12,5 +12,5 @@ class AttempSeed(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
 
-    quiz_attempt_id: Mapped[int] = mapped_column(ForeignKey("quiz_attempt.id"), nullable=False)
+    quiz_attempt_id: Mapped[int] = mapped_column(ForeignKey("quiz_attempt.id", ondelete="CASCADE", onupdate="CASCADE"), nullable=False)
     seed: Mapped[int] = mapped_column(Integer, nullable=False)

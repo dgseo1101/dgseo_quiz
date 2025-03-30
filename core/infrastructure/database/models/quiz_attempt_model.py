@@ -13,8 +13,8 @@ class QuizAttemptModel(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
 
-    quiz_id: Mapped[int] = mapped_column(ForeignKey("quiz.id"), nullable=False)
-    user_id: Mapped[int] = mapped_column(ForeignKey("user.id"), nullable=False)
+    quiz_id: Mapped[int] = mapped_column(ForeignKey("quiz.id", ondelete="CASCADE", onupdate="CASCADE"), nullable=False)
+    user_id: Mapped[int] = mapped_column(ForeignKey("user.id", ondelete="CASCADE", onupdate="CASCADE"), nullable=False)
     
     created_at: Mapped[datetime] = mapped_column(
         DateTime,

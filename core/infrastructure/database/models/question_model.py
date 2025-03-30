@@ -11,7 +11,7 @@ class QuestionModel(Base):
     __tablename__ = "question"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    quiz_id: Mapped[int] = mapped_column(ForeignKey("quiz.id"), nullable=False)
+    quiz_id: Mapped[int] = mapped_column(ForeignKey("quiz.id", ondelete="CASCADE", onupdate="CASCADE"), nullable=False)
     content: Mapped[str] = mapped_column(Text, default="", nullable=False)
     display_order: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     created_at: Mapped[datetime] = mapped_column(

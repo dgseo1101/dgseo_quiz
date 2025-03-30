@@ -12,10 +12,10 @@ class QuizAttemptQuestionModel(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
 
-    quiz_attempt_id: Mapped[int] = mapped_column(ForeignKey("quiz_attempt.id"), nullable=False)
-    question_id: Mapped[int] = mapped_column(ForeignKey("question.id"), nullable=False)
+    quiz_attempt_id: Mapped[int] = mapped_column(ForeignKey("quiz_attempt.id", ondelete="CASCADE", onupdate="CASCADE"), nullable=False)
+    question_id: Mapped[int] = mapped_column(ForeignKey("question.id", ondelete="CASCADE", onupdate="CASCADE"), nullable=False)
     question_order: Mapped[int] = mapped_column(Integer, nullable=False)
-    selected_choice_id: Mapped[int] = mapped_column(ForeignKey("choice.id"), nullable=True)
+    selected_choice_id: Mapped[int] = mapped_column(ForeignKey("choice.id", ondelete="CASCADE", onupdate="CASCADE"), nullable=True)
     
     created_at: Mapped[datetime] = mapped_column(
         DateTime,

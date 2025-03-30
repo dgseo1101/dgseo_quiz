@@ -12,7 +12,7 @@ class ChoiceModel(Base):
     __tablename__ = "choice"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    question_id: Mapped[int] = mapped_column(ForeignKey("question.id"), nullable=False)
+    question_id: Mapped[int] = mapped_column(ForeignKey("question.id", ondelete="CASCADE", onupdate="CASCADE"), nullable=False)
     content: Mapped[str] = mapped_column(Text, default="", nullable=False)
     is_correct: Mapped[bool] = mapped_column(Integer, default=0, nullable=False)
     display_order: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
