@@ -14,7 +14,7 @@ from server.shard_kernel.auth_helper import validate_user_and_get_user_id
 
 router = APIRouter(prefix="/quiz_attempt", tags=["quiz_attempt"])
 
-@router.get("", summary="응시중인 시험 정보")
+@router.get("", summary="유저가 응시중인/응시한 시험 정보")
 @inject
 async def get_quiz_attempt(
     user_id: int = Depends(validate_user_and_get_user_id),

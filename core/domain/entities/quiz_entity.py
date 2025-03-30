@@ -10,6 +10,7 @@ class CreateQuizEntity(Entity):
     randomize_questions: bool
     randomize_choices: bool
     num_questions_to_display: int
+    page_size: int
 
 
 class UpdateQuizEntity(Entity):
@@ -19,6 +20,7 @@ class UpdateQuizEntity(Entity):
     randomize_questions: Optional[bool] = None
     randomize_choices: Optional[bool] = None
     num_questions_to_display: Optional[int] = None
+    page_size: Optional[int] = None
 
 class QuizEntity(Entity):
     id: int
@@ -30,3 +32,4 @@ class QuizEntity(Entity):
     randomize_questions: bool
     randomize_choices: bool
     num_questions_to_display: int
+    page_size: int

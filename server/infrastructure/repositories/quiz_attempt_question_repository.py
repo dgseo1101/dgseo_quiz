@@ -21,19 +21,16 @@ class QuizAttemptQuestionRepository(BaseRepository):
 
     @property
     def model(self):
-        return QuizAttemptQuestionModel  # 유저 엔티티를 반환
+        return QuizAttemptQuestionModel 
 
     @property
     def create_entity(self):
-        # 여기에서 필요한 로직으로 엔티티를 생성할 수 있음
         return CreateQuizAttemptQuestionEntity
 
     @property
     def return_entity(self):
-        # 반환할 때 사용하는 DTO 또는 엔티티 정의
         return QuizAttemptQuestionEntity
 
     @property
     def update_entity(self):
-        # 업데이트 시 사용하는 엔티티나 로직
         return UpdateQuizAttemptQuestionEntity

@@ -18,6 +18,7 @@ from core.infrastructure.database.models.quiz_attempt_model import QuizAttemptMo
 from core.infrastructure.database.models.quiz_attempt_question_model import QuizAttemptQuestionModel
 from core.infrastructure.database.models.attempt_seed_model import AttempSeedModel
 from core.infrastructure.database.models.session_model import SessionsModel
+from core.infrastructure.database.models.assignment_model import AssignmentModel
 
 load_dotenv(dotenv_path=f"_env/dev.env", override=True)
 

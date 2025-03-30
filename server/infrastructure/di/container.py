@@ -10,6 +10,7 @@ from server.infrastructure.repositories.quiz_attempt_repository import QuizAttem
 from server.infrastructure.repositories.quiz_attempt_question_repository import QuizAttemptQuestionRepository
 from server.infrastructure.repositories.attempt_seed_repository import AttemptSeedRepository
 from server.infrastructure.repositories.session_repository import SessionRepository
+from server.infrastructure.repositories.assignment_repository import AssignmentRepository
 
 # ======================================================================================
 
@@ -20,6 +21,7 @@ from server.application.services.choice_service import ChoiceService
 from server.application.services.quiz_attempt_service import QuizAttemptService
 from server.application.services.quiz_attempt_question_service import QuizAttemptQuestionService
 from server.application.services.attempt_seed_service import AttemptSeedService
+from server.application.services.assignment_service import AssignmentService
 
 
 from dependency_injector import providers
@@ -66,6 +68,11 @@ class ServerContainer(CoreContainer):
         session=CoreContainer.database.provided.session,
     )
 
+    assignment_repository = providers.Singleton(
+        AssignmentRepository,
+        session=CoreContainer.database.provided.session
+    )
+
     # ======================================================================================
 
     user_service = providers.Factory(
@@ -106,6 +113,11 @@ class ServerContainer(CoreContainer):
     attempt_seed_service = providers.Factory(
         AttemptSeedService,
         attempt_seed_repository=attempt_seed_repository
+    )
+
+    assignment_service = providers.Factory(
+        AssignmentService,
+        assignment_repository=assignment_repository
     )
 
 

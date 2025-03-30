@@ -7,8 +7,7 @@ from server.application.controllers.choice_controller import router as choice_ro
 from server.application.controllers.question_controller import router as question_router
 from server.application.controllers.quiz_controller import router as quiz_router
 from server.application.controllers.quiz_attempt_controller import router as quiz_attempt_router
-from server.application.controllers.quiz_attempt_question_controller import router as quiz_attempt_question_router
-from server.application.controllers.attempt_seed_controller import router as attempt_seed_router
+from server.application.controllers.assignment_controller import router as assignment_router
 
 container = None
 
@@ -28,9 +27,11 @@ def create_app():
 
     app = FastAPI(docs_url="/docs")
     app.include_router(router=user_router)
+    app.include_router(router=quiz_attempt_router)
     app.include_router(router=quiz_router)
     app.include_router(router=question_router)
-    app.include_router(router=quiz_attempt_router)
+    app.include_router(router=choice_router)
+    app.include_router(router=assignment_router)
 
     return app
 

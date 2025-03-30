@@ -10,14 +10,15 @@ class CreateQuizRequestDto(BaseRequest):
     randomize_questions: bool
     randomize_choices: bool
     num_questions_to_display: int
+    page_size: int
 
 class UpdateQuizRequestDto(BaseRequest):
     title: Optional[str] = None
     description: Optional[str] = None
-    created_by: Optional[int] = None
     randomize_questions: Optional[bool] = None
     randomize_choices: Optional[bool] = None
     num_questions_to_display: Optional[int] = None
+    page_size: Optional[int] = None
 
 class QuizResponseDto(BaseResponse):
     id: int
@@ -29,3 +30,4 @@ class QuizResponseDto(BaseResponse):
     randomize_questions: bool
     randomize_choices: bool
     num_questions_to_display: int
+    page_size: int

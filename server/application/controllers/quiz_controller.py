@@ -32,17 +32,26 @@ async def get_quizs(
 )->List[QuizResponseDto]:
     return await quiz_service.get_datas(page=page, page_size=page_size)
 
+@router.get("/assigned-quiz", summary="유저가 응시할 시험 조회")
+@inject
+async def get_quiz_by_user(
+    page: int = 1,
+    page_size: int = 10,
+    user_id: int = Depends(validate_user_and_get_user_id),
+    quiz_service: QuizService = Depends(Provide[ServerContainer.quiz_service])
+)->List[QuizResponseDto]:
+    return await quiz_service.get_data_by_user_id(user_id=user_id, page=page, page_size=page_size)
+
 @router.get("/{quiz_id}", summary="시험 조회")
 @inject
 async def get_quiz(
     quiz_id: int,
     seed: Optional[int] = None, #시드가 없을 시, 최초로 설정하여 리턴, 이후부턴 동일한 시드 입력
     page: int = 1,
-    page_size: int = 10,
     user_id: int = Depends(validate_user_and_get_user_id),
     quiz_service: QuizService = Depends(Provide[ServerContainer.quiz_service])
 )->QuizDetailResponseDto:
-    return await quiz_service.get_quiz(quiz_id=quiz_id, page=page, page_size=page_size, seed=seed)
+    return await quiz_service.get_quiz(quiz_id=quiz_id, page=page, seed=seed)
 
 @router.post("", summary="시험 생성")
 @inject

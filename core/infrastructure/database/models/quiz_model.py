@@ -25,6 +25,8 @@ class QuizModel(Base):
         server_onupdate=func.now(),
     )
 
+    page_size: Mapped[int] = mapped_column(Integer, default=10, nullable=False)
+
     randomize_questions: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     randomize_choices:Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     num_questions_to_display:Mapped[bool] = mapped_column(Integer, nullable=False)

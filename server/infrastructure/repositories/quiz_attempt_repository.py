@@ -43,7 +43,6 @@ class QuizAttemptRepository(BaseRepository):
 
     @property
     def update_entity(self):
-        # 업데이트 시 사용하는 엔티티나 로직
         return UpdateQuizAttemptEntity
     
     async def get_data_by_user_id(self, user_id: int):

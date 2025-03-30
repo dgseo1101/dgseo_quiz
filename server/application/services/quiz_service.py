@@ -42,6 +42,9 @@ class QuizService(BaseService):
     def update_dto(self):
         return UpdateQuizRequestDto
     
+    async def get_data_by_user_id(self, user_id: int, page: int, page_size: int):
+        return await self.quiz_repository.get_data_by_user_id(user_id=user_id, page=page, page_size=page_size)
+    
     async def create_quiz(self, create_data: QuizCreate, user_id: int):
         for question in create_data.questions:
             if len(question.choices) != question.n + 2 :
@@ -77,7 +80,7 @@ class QuizService(BaseService):
 
         return await self.quiz_repository.create_data_orm(create_data=quiz)
     
-    async def get_quiz(self, quiz_id: int, page: int, page_size: int, seed: Optional[int] = None):
+    async def get_quiz(self, quiz_id: int, page: int, seed: Optional[int] = None):
         quiz = await self.quiz_repository.get_quiz_with_questions(quiz_id)
         if not quiz:
             raise HTTPException(status_code=404, detail="Quiz not found")
@@ -96,8 +99,8 @@ class QuizService(BaseService):
         if quiz.randomize_questions:
             rng.shuffle(selected_questions)
         
-        start_idx = (page - 1) * page_size
-        end_idx = start_idx + page_size
+        start_idx = (page - 1) * quiz.page_size
+        end_idx = start_idx + quiz.page_size
         paginated_questions = selected_questions[start_idx:end_idx]
 
         for question in paginated_questions:
@@ -128,7 +131,7 @@ class QuizService(BaseService):
             updated_at=quiz.updated_at,
             total_selected_questions=len(selected_questions),
             page=page,
-            page_size=page_size,
+            page_size=quiz.page_size,
             questions=question_dtos,
             seed=seed
         )
