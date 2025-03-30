@@ -9,7 +9,7 @@ from core.infrastructure.database.models.quiz_attempt_model import QuizAttemptMo
 from core.infrastructure.repositories.base_repository import BaseRepository
 
 from core.infrastructure.database.models.quiz_attempt_question_model import QuizAttemptQuestionModel
-from core.infrastructure.database.models.attempt_seed_model import AttempSeed
+from core.infrastructure.database.models.attempt_seed_model import AttempSeedModel
 
 from core.domain.entities.quiz_attempt_entity import (
     QuizAttemptEntity,
@@ -49,9 +49,9 @@ class QuizAttemptRepository(BaseRepository):
     async def get_data_by_user_id(self, user_id: int):
         async with self.session() as session:
             result = await session.execute(
-                select(QuizAttemptModel, AttempSeed)
+                select(QuizAttemptModel, AttempSeedModel)
                 .where(QuizAttemptModel.user_id == user_id)
-                .join(AttempSeed, QuizAttemptModel.id == AttempSeed.quiz_attempt_id, isouter=True)
+                .join(AttempSeedModel, QuizAttemptModel.id == AttempSeedModel.quiz_attempt_id, isouter=True)
             )
             datas = result.all()
 

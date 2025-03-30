@@ -22,7 +22,7 @@ async def get_quiz_attempt(
 )-> List[QuizAttemptWithSeedResponseDto]:
     return await quiz_attempt_service.get_quiz_attempt(user_id=user_id)
 
-@router.post("/{quiz_id}/attempt/start", summary="시험 응시시 자동으로 호출되는 api")
+@router.post("/{quiz_id}/start", summary="시험 응시시 자동으로 호출되는 api")
 @inject
 async def start_quiz(
     quiz_id: int,

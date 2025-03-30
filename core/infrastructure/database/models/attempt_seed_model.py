@@ -7,7 +7,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from core.infrastructure.database.database import Base
 
 # 관리자가 선택지의 랜덤 배치를 설정한 경우,  각 응시 문제별로 실제 랜덤 배치된 선택지의 순서를 별도로 저장
-class AttempSeed(Base):
+class AttempSeedModel(Base):
     __tablename__ = "attempt_seed"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)

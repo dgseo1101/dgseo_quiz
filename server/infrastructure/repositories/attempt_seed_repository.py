@@ -3,7 +3,7 @@ from typing import Callable
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from core.infrastructure.database.models.attempt_seed_model import AttempSeed
+from core.infrastructure.database.models.attempt_seed_model import AttempSeedModel
 from core.infrastructure.repositories.base_repository import BaseRepository
 
 from core.domain.entities.attempt_seed_entity import (
@@ -21,7 +21,7 @@ class AttemptSeedRepository(BaseRepository):
 
     @property
     def model(self):
-        return AttempSeed  # 유저 엔티티를 반환
+        return AttempSeedModel  # 유저 엔티티를 반환
 
     @property
     def create_entity(self):
