@@ -45,6 +45,13 @@ class BaseRepository(ABC):
             await session.refresh(data)
 
         return self.return_entity(**vars(data))
+    
+    async def create_data_orm(self, create_data):
+        async with self.session() as session:
+            session.add(create_data)
+            await session.commit()
+            await session.refresh(create_data)
+        return self.return_entity(**vars(create_data))
 
     async def create_datas(self, create_datas):
         async with self.session() as session:

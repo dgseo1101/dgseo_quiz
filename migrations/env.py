@@ -11,7 +11,12 @@ from sqlalchemy import create_engine
 
 from core.infrastructure.database.database import Base
 from core.infrastructure.database.models.user_model import UserModel
-from core.infrastructure.database.models.notice_model import NoticeModel
+from core.infrastructure.database.models.choice_model import ChoiceModel
+from core.infrastructure.database.models.question_model import QuestionModel
+from core.infrastructure.database.models.quiz_model import QuizModel
+from core.infrastructure.database.models.quiz_attempt_model import QuizAttemptModel
+from core.infrastructure.database.models.quiz_attempt_question_model import QuizAttemptQuestionModel
+from core.infrastructure.database.models.attempt_seed_model import AttempSeed
 from core.infrastructure.database.models.session_model import SessionsModel
 
 load_dotenv(dotenv_path=f"_env/dev.env", override=True)
@@ -29,7 +34,7 @@ if config.config_file_name is not None:
 
 target_metadata = Base.metadata
 
-url = f"mysql+pymysql://{DATABASE_USER}:{DATABASE_PASSWORD}@{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_NAME}?charset=utf8mb4"
+url = f"postgresql+psycopg2://{DATABASE_USER}:{DATABASE_PASSWORD}@{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_NAME}"
 
 
 def run_migrations_offline() -> None:

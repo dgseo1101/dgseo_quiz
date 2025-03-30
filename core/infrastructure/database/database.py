@@ -13,7 +13,7 @@ def create_dsn(
     database_port: int,
     database_name: str,
 ):
-    return f"mysql+aiomysql://{database_user}:{database_password}@{database_host}:{database_port}/{database_name}?charset=utf8mb4"
+    return f"postgresql+asyncpg://{database_user}:{database_password}@{database_host}:{database_port}/{database_name}"
 
 
 class Base(DeclarativeBase):
